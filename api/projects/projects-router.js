@@ -1,7 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const Projects = require("./projects-model");
-const { validateID } = require("./projects-middleware");
+const { 
+    validateProjectID, validatePostedProject,
+    postProject 
+} = require("./projects-middleware");
 
 router.get("/", (req, res, next) => {
     Projects.get()
@@ -9,7 +12,9 @@ router.get("/", (req, res, next) => {
         .catch(next)
 });
 
-router.get("/:id", validateID, (req, res) => res.json(req.project));
+router.get("/:id", validateProjectID, (req, res) => res.json(req.project));
+
+router.post("/", validatePostedProject, postProject, (req, res) => res.json(req.postedProject));
 
 router.use((err, req, res, next) => {
     res.status(err.status || 500).json({
