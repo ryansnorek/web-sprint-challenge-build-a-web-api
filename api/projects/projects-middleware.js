@@ -9,7 +9,7 @@ async function validateProjectID(req, res, next) {
     } catch (e) { next(e) }
 }
 
-function validatePostedProject(req, res, next) {
+function validateProject(req, res, next) {
     const { name, description } = req.body;
     if (!name || !description) res.status(400).json({ message: "Name and description required" });
     next();
@@ -21,15 +21,26 @@ async function postProject(req, res, next) {
         req.postedProject = postedProject;
         next();
     } catch (e) { next(e) }
-    // Projects.insert(req.body)
-    //     .then(project => req.postedProject = project)
-    //     .catch(next)
-    // console.log(req.postedProject)
-    // next();
+}
+
+async function updateProject(req, res, next) {
+    try {
+        const updatedProject = await Projects.update(req.params.id, req.body);
+        req.updatedProject = updatedProject;
+        next();
+    } catch (e) { next(e) }
+}
+
+function deleteProject(req, res, next) {
+    Projects.remove(req.params.id)
+        .then(next)
+        .catch(next)
 }
 
 module.exports = {
     validateProjectID,
-    validatePostedProject,
+    validateProject,
     postProject,
+    updateProject,
+    deleteProject,
 }
