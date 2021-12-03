@@ -5,12 +5,6 @@ async function validateProjectID(req, res, next) {
     catch (e) { next(e) }
     if (!req.project) res.status(404).json({ message: "Not found" });
     next();
-    // try {
-    //     const project = await Projects.get(req.params.id);
-    //     if (!project) res.status(404).json({ message: "Not found" });
-    //     req.project = project;
-    //     next();
-    // } catch (e) { next(e) }
 }
 
 function validateProject(req, res, next) {
