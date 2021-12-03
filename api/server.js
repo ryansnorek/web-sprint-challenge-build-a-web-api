@@ -1,15 +1,14 @@
-const express = require('express');
+const express = require("express");
 const server = express();
 
 const projectsURL = "/api/projects";
+const actionsURL = "/api/actions";
+
 const projectsRoutes = require("./projects/projects-router");
+const actionsRoutes = require("./actions/actions-router");
 
 server.use(projectsURL, projectsRoutes);
+server.use(actionsURL, actionsRoutes);
 server.use(express.json());
-
-
-
-// Build your actions router in /api/actions/actions-router.js
-// Build your projects router in /api/projects/projects-router.js
 
 module.exports = server;
