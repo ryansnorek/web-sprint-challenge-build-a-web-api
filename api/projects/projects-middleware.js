@@ -7,8 +7,9 @@ async function validateProjectID(req, res, next) {
     next();
 }
 function validateProject(req, res, next) {
-    const { name, description } = req.body;
-    if (!name || !description) res.status(400).json({ message: "Name and description required" });
+    const { name, description, completed } = req.body;
+    if (!name || !description) res.status(400).json({ message: "Name and description required" }); 
+    if (!completed || completed === null) res.status(400)
     next();
 }
 async function postProject(req, res, next) {

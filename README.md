@@ -147,7 +147,23 @@ We have provided test data for all the resources.
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. The core features of Node.js and Express and why they are useful.
+
+    Node.js is a runtime environment that executes javascript outside the browser.
+    Express is a framework for building apps and services on top of Node.
+    The simplicity, asynchronous capabilities, and familiar packages like npm allow javascript developers to quickly build APIs and backend services for web apps.
+
 1. Understand and explain the use of Middleware.
+
+    Middleware is essentially the redux reducer/actions for the backend. They are a module of functions that can be used by the router when executing CRUD operations. 
+
 1. The basic principles of the REST architectural style.
+
+  REST is an acronym for represtational state transfer. The basic principles for REST APIs when handling requests is creating, reading, updating, and deleting data. Everything is a resource, is accessible by a unique URL, amd communicates over stateless protocol (HTTP)
+
 1. Understand and explain the use of Express Routers.
+
+  Express routers are the execution points of CRUD operations and are built to help organize requests.
+
 1. Describe tooling used to manually test the correctness of an API.
+
+    Postman, HTTPie, Insomnia, Paw, Chrome are all tools to check that the response from an API is correct.
