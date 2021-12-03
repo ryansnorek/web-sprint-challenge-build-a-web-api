@@ -6,7 +6,8 @@ const {
     validateProject,
     postProject,
     updateProject,
-    deleteProject 
+    deleteProject,
+    validateProjectActions 
 } = require("./projects-middleware");
 
 router.get("/", (req, res, next) => Projects.get().then(result => res.json(result)).catch(next));
@@ -18,6 +19,8 @@ router.post("/", validateProject, postProject, (req, res) => res.json(req.posted
 router.put("/:id", validateProjectID, validateProject, updateProject, (req, res) => res.json(req.updatedProject))
 
 router.delete("/:id", validateProjectID, deleteProject, (req, res, next) => next())
+
+router.get("/:id/actions", validateProjectActions, (req, res) => res.json(req.projectActions));
 
 router.use((err, req, res, next) => {
     res.status(err.status || 500).json({
