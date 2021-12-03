@@ -16,10 +16,15 @@ async function postAction(req, res, next) {
     catch (e) { next(e) }
     next();
 }
-
+async function updateAction(req, res, next) {
+    try { req.updatedAction = await Actions.update(req.params.id, req.body) }
+    catch (e) { next(e) }
+    next();
+}
 
 module.exports = {
     validateActionID,
     validateAction,
     postAction,
+    updateAction,
 }
