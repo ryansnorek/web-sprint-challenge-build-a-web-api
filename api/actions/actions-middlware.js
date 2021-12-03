@@ -21,10 +21,16 @@ async function updateAction(req, res, next) {
     catch (e) { next(e) }
     next();
 }
+function deleteAction(req, res, next) {
+    Actions.remove(req.params.id)
+        .then(next)
+        .catch(next);
+}
 
 module.exports = {
     validateActionID,
     validateAction,
     postAction,
     updateAction,
+    deleteAction
 }
